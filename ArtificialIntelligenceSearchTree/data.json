@@ -1,0 +1,102 @@
+[
+  {
+    "MainFieldName": "Computer Vision",
+    "Subfields": [
+      {
+        "Name": "Facial Recognition",
+        "Description": "A biometric software application capable of uniquely identifying or verifying a person",
+        "Application": "Security checkpoints and unlocking mobile devices (FaceID)"
+      },
+      {
+        "Name": "Image Classification",
+        "Description": "The process of assigning a specific label or category to an entire image",
+        "Application": "Automatic photo tagging in Google Photos"
+      },
+      {
+        "Name": "Object Detection",
+        "Description": "Identifying and locating objects within an image by drawing bounding boxes",
+        "Application": "Autonomous vehicles detecting pedestrians"
+      },
+      {
+        "Name": "Semantic Segmentation",
+        "Description": "Linking each pixel in an image to a class label for precise understanding",
+        "Application": "Medical imaging analysis to detect tumors"
+      }
+    ]
+  },
+  {
+    "MainFieldName": "Machine Learning",
+    "Subfields": [
+      {
+        "Name": "Deep Learning",
+        "Description": "A subset of machine learning based on artificial neural networks with multiple layers",
+        "Application": "Facial recognition systems used in security"
+      },
+      {
+        "Name": "Reinforcement Learning",
+        "Description": "A method where an agent learns to make decisions by performing actions and receiving rewards",
+        "Application": "AI systems playing complex games like AlphaGo"
+      },
+      {
+        "Name": "Supervised Learning",
+        "Description": "Training a model on a labeled dataset where the correct output is known",
+        "Application": "Email spam filters"
+      },
+      {
+        "Name": "Unsupervised Learning",
+        "Description": "Using machine learning algorithms to analyze and cluster unlabeled datasets",
+        "Application": "Customer segmentation in marketing"
+      }
+    ]
+  },
+  {
+    "MainFieldName": "Natural Language Processing",
+    "Subfields": [
+      {
+        "Name": "Machine Translation",
+        "Description": "Automated translation of text or speech from one natural language to another",
+        "Application": "Real-time translation tools like Google Translate"
+      },
+      {
+        "Name": "Sentiment Analysis",
+        "Description": "The process of determining the emotional tone behind a text",
+        "Application": "Analyzing customer reviews"
+      },
+      {
+        "Name": "Speech Recognition",
+        "Description": "The ability of a machine to identify and process human speech into a written format",
+        "Application": "Virtual assistants like Siri, Alexa"
+      },
+      {
+        "Name": "Text Summarization",
+        "Description": "The process of shortening a set of data computationally",
+        "Application": "Generating quick news digests"
+      }
+    ]
+  },
+  {
+    "MainFieldName": "Robotics",
+    "Subfields": [
+      {
+        "Name": "Human-Robot Interaction",
+        "Description": "The study of interactions and communication between humans and robots",
+        "Application": "Caregiver robots assisting elderly patients"
+      },
+      {
+        "Name": "Medical Robotics",
+        "Description": "Robots utilized in the medical sciences, including surgery",
+        "Application": "Da Vinci Surgical System"
+      },
+      {
+        "Name": "Robot Motion Planning",
+        "Description": "Determining a path for a robot to move without colliding",
+        "Application": "Automated guided vehicles (AGVs) in warehouses"
+      },
+      {
+        "Name": "Swarm Robotics",
+        "Description": "Coordination of large numbers of mostly simple physical robots",
+        "Application": "Search and rescue missions using drone swarms"
+      }
+    ]
+  }
+]

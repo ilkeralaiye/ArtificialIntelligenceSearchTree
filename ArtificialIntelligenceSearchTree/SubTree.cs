@@ -2,11 +2,16 @@
     internal class SubTree {
 
         public SubTreeNode root;
+        public int maxDepth;
+
+        public SubTree() {
+            this.maxDepth = maxDepth;
+        }
 
         public void display() {
 
             // For the sake of displaying alphabetically, we will use inorder traversal.
-            InorderTraversal(root);
+            InorderTraversal(root, -1);
 
         }
 
@@ -46,18 +51,23 @@
 
         }
 
+        private void InorderTraversal(SubTreeNode node, int depth) {
 
-        private void InorderTraversal(SubTreeNode node) {
+            depth++;
+            if (depth > maxDepth) {
+                this.maxDepth = depth;
+            }
 
             if (node != null) {
+
                 // First, go to the leftmost node
-                InorderTraversal(node.left);
+                InorderTraversal(node.left, depth);
                 // Print the current node's informations.
                 Console.WriteLine("\tName of the subtree node: {0}", node.name); // Name
                 Console.WriteLine("\t\tDescription: {0}", node.description); // Description
                 Console.WriteLine("\t\tApplication Areas: {0}", node.applicationAreas); // Application Areas
                 // Then, go to the rightmost node
-                InorderTraversal(node.right);
+                InorderTraversal(node.right, depth);
             }
 
         }

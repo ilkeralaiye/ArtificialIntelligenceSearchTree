@@ -2,11 +2,21 @@
     internal class MainTree {
 
         public MainTreeNode root;
+        public int maxDepth;
+        public SubTree subMaxDepth;
+
+        public MainTree() {
+            maxDepth = 0;
+        }
 
         public void display() {
             // For the sake of displaying alphabetically, we will use inorder traversal.
-            InorderTraversal(root);
+            InorderTraversal(root, 0);
 
+        }
+
+        public int getMaxDepth() {
+            return this.maxDepth;
         }
 
         public void Insert(MainTreeNode node) {
@@ -46,15 +56,23 @@
         }
 
         // Display all information in alphabetic order with subfield informations.
-        private void InorderTraversal(MainTreeNode node) {
+        private void InorderTraversal(MainTreeNode node, int depth) {
 
             if (node != null) {
+                SubTree subTree = node.subTree;
+                
                 // First, go to the leftmost node
-                InorderTraversal(node.left);
+                InorderTraversal(node.left, depth);
                 Console.WriteLine("Name of the node: {0}", node.name);
-                node.subTree.display();
+                subTree.display();
                 // Then, go to the rightmost node
-                InorderTraversal(node.right);
+                InorderTraversal(node.right, depth);
+
+                if (subTree.maxDepth > maxDepth) {
+                    maxDepth = subTree.maxDepth;
+                    subMaxDepth = subTree;
+                }
+
             }
 
         }

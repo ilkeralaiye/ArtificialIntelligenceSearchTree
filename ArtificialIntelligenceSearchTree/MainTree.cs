@@ -8,17 +8,15 @@
         public MainTree() {
             maxDepth = 0;
         }
-
-        public void display() {
-            // For the sake of displaying alphabetically, we will use inorder traversal.
-            InorderTraversal(root, 0);
-
-        }
-
         public int getMaxDepth() {
             return this.maxDepth;
         }
 
+        public void display() {
+            // For the sake of displaying alphabetically, we will use inorder traversal.
+            InorderTraversal(root, 0);
+        }
+        // Insertion
         public void Insert(MainTreeNode node) {
 
             if (root == null) {
@@ -38,7 +36,7 @@
                         current.left = node;
                         return;
                     }
-
+                // Add right
                 } else if (current.name.CompareTo(node.name) < 0) {
                     
                     if (current.right != null) {

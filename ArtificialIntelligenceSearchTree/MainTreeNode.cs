@@ -4,12 +4,12 @@
         public MainTreeNode left;
         public MainTreeNode right;
 
-        public Tree subTree;
+        public MainTree subTree;
 
         public string name;
 
         public MainTreeNode(string name) {
-            subTree = new Tree();
+            subTree = new MainTree();
             this.name = name;
         }
 

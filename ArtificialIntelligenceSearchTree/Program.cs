@@ -1,7 +1,85 @@
-﻿namespace ArtificialIntelligenceSearchTree {
+﻿using System.Collections;
+using System.Security.Cryptography.X509Certificates;
+using System.Xml.Linq;
+
+namespace ArtificialIntelligenceSearchTree {
     internal class Program {
         static void Main(string[] args) {
 
+            // First Part
+
+            // Create MainTree and add Elements to itself.
+            MainTree newMainTree = new MainTree();
+            addElements(newMainTree);
+
+            newMainTree.display(); // Display MainTree
+
+            printMaxDepth(newMainTree);
+
+            WordTree newWordTree = new WordTree();
+            printWordTree(newMainTree, newWordTree);
+
+            // Second Part a.k.a HASHTABLE
+
+            Hashtable hashtable = createHashTable(newMainTree);
+            printHashTable(hashtable);
+            updateHashTable(newMainTree, hashtable);
+            printHashTable(hashtable);
+
+        }
+
+        public static void updateHashTable(MainTree newMainTree, Hashtable hashtable) {
+
+            Console.Write("\nINPUT: Please enter a field name to find: ");
+            string nameToFind = Console.ReadLine();
+            Console.Write("\nINPUT: Please enter a field name for update: ");
+            string nameToUpdate = Console.ReadLine();
+
+            if (hashtable.ContainsKey(nameToFind)) {
+
+                MainTreeNode newNode = new MainTreeNode(nameToUpdate, (MainTreeNode) hashtable[nameToFind]);
+                hashtable.Remove(nameToFind);
+                hashtable.Add(nameToUpdate, newNode);
+
+            }
+
+
+        }
+
+        public static void printHashTable(Hashtable hashtable) {
+
+            Console.WriteLine("\nPrinting hashtable key, value pairs\n");
+
+            foreach (DictionaryEntry e in hashtable) {
+                string key = (string) e.Key;
+                MainTreeNode value = (MainTreeNode)e.Value;
+                Console.WriteLine($"{key}: {value.toString()}");
+            }
+
+        }
+
+
+        public static Hashtable createHashTable(MainTree newMainTree) {
+            Hashtable hashtable = new Hashtable();
+            newMainTree.addToHashTable(hashtable);
+            return hashtable;
+        }
+
+        public static void printMaxDepth(MainTree newMainTree) {
+            Console.WriteLine("\n\nMax depth is {0}. Informations of subTree that has max depth:\n", newMainTree.getMaxDepth()); // Display the max depth with .getMaxDepth() function.
+            newMainTree.subMaxDepth.display(); // Display the subtree that has max depth with .subMaxDepth.display()
+            Console.ReadKey();
+        }
+
+        public static void printWordTree(MainTree newMainTree, WordTree newWordTree) {
+            Console.WriteLine("\n\nEvery word in subtrees printing descending order of their frequencies.");
+            newMainTree.addDefinitionsToWordTree(newWordTree); // Add every word in definitions to WordTree
+            newWordTree.display(); // Display the WordTree 
+            Console.ReadKey();
+        }
+
+
+        public static void addElements(MainTree newMainTree) {
             // MACHINE LEARNING
             SubTree mlSubTree = new SubTree();
 
@@ -32,7 +110,7 @@
             ));
 
             MainTreeNode mlMainNode = new MainTreeNode("Machine Learning", mlSubTree);
-        
+
             // COMPUTER VISION
             SubTree cvSubTree = new SubTree();
 
@@ -121,31 +199,11 @@
 
             MainTreeNode roboticsMainNode = new MainTreeNode("Robotics", roboticsSubTree);
 
-
-
-            MainTree newMainTree = new MainTree();
-
             newMainTree.Insert(mlMainNode);
             newMainTree.Insert(cvMainNode);
             newMainTree.Insert(nlpMainNode);
             newMainTree.Insert(roboticsMainNode);
-
-            newMainTree.display();
-
-            Console.WriteLine("\n\nMax depth is {0}. Informations of subTree that has max depth:\n", newMainTree.getMaxDepth());
-            newMainTree.subMaxDepth.display();
-            Console.ReadKey();
-
-            Console.WriteLine("\n\nEvery word in subtrees printing descending order of their frequencies.");
-
-            WordTree newWordTree = new WordTree();
-
-            newMainTree.addDefinitionsToWordTree(newWordTree);
-
-            newWordTree.display();
-            Console.ReadKey();
-
-
         }
+
     }
 }

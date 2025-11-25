@@ -16,5 +16,20 @@
             this.subTree = subTree;
             this.name = name;
         }
+
+        // Copy Constructor with extra name parameter
+        public MainTreeNode(string name, MainTreeNode fromCopy) {
+
+            this.left = fromCopy.left;
+            this.right = fromCopy.right;
+            this.subTree = fromCopy.subTree;
+            this.name = name;
+
+        }
+
+        public string toString() {
+            return ("A Main Tree Node, name: " +  this.name);
+        }
+
     }
 }

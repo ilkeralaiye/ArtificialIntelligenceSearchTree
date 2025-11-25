@@ -1,4 +1,7 @@
-﻿namespace ArtificialIntelligenceSearchTree {
+﻿using System.Collections;
+using System.Xml.Linq;
+
+namespace ArtificialIntelligenceSearchTree {
     internal class MainTree {
 
         public MainTreeNode root;
@@ -94,7 +97,26 @@
             }
 
         }
+        public void addToHashTable(Hashtable table) {
+            if (root == null) {
+                return;
+            }
 
+            inOrderAddHashTable(root, table);
+
+        }
+
+        private void inOrderAddHashTable(MainTreeNode node, Hashtable table) {
+
+            if (node != null) {
+                inOrderAddHashTable(node.left, table);
+
+                table.Add(node.name, node);
+
+                inOrderAddHashTable(node.right, table);
+            }
+
+        }
 
 
     }

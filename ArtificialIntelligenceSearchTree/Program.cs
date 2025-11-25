@@ -74,7 +74,7 @@
 
             nlpSubTree.Insert(new SubTreeNode(
                 "Sentiment Analysis",
-                "The process of determining the emotional tone (positive, negative, neutral) behind a text",
+                "The process of determining the emotional tone behind a text",
                 "Analyzing customer reviews to monitor brand reputation"
             ));
 
@@ -134,6 +134,15 @@
 
             Console.WriteLine("\n\nMax depth is {0}. Informations of subTree that has max depth:\n", newMainTree.getMaxDepth());
             newMainTree.subMaxDepth.display();
+            Console.ReadKey();
+
+            Console.WriteLine("\n\nEvery word in subtrees printing descending order of their frequencies.");
+
+            WordTree newWordTree = new WordTree();
+
+            newMainTree.addDefinitionsToWordTree(newWordTree);
+
+            newWordTree.display();
             Console.ReadKey();
 
 

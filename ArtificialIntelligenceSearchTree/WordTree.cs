@@ -24,6 +24,7 @@ namespace ArtificialIntelligenceSearchTree {
                         current = current.left;
                     } else {
                         current.left = wordNodeToAdd;
+                        current.left.frequency++;
                         return;
                     }
 
@@ -34,6 +35,7 @@ namespace ArtificialIntelligenceSearchTree {
                         current = current.right;
                     } else {
                         current.right = wordNodeToAdd;
+                        current.right.frequency++;
                         return;
                     }
 
@@ -42,6 +44,28 @@ namespace ArtificialIntelligenceSearchTree {
                     return;
                 }
 
+            }
+
+        }
+
+        public void display() {
+
+            if (root == null) {
+                Console.WriteLine("This WordTree is null. Please insert some words and try again.");
+                return;
+            }
+
+            printInorderTraversal(root);
+
+
+        }
+
+        private void printInorderTraversal(WordNode node) {
+
+            if (node != null) {
+                printInorderTraversal(node.left);
+                Console.WriteLine("Current Word: {0}, frequency {1}", node.word, node.frequency);
+                printInorderTraversal(node.right);
             }
 
         }

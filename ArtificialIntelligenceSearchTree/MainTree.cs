@@ -75,5 +75,27 @@
 
         }
 
+        public void addDefinitionsToWordTree(WordTree tree) {
+            if (root == null) {
+                return;
+            }
+
+            addWordListInOrder(tree, root);
+
+
+        }
+
+        private void addWordListInOrder(WordTree tree, MainTreeNode node) {
+
+            if (node != null) {
+                addWordListInOrder(tree, node.left);
+                node.subTree.addDef(tree);
+                addWordListInOrder(tree, node.right);
+            }
+
+        }
+
+
+
     }
 }

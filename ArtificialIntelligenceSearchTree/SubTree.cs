@@ -72,5 +72,33 @@
 
         }
 
+        public void addDef(WordTree tree) {
+
+            if (root == null) {
+                return;
+            }
+
+            addWordListInOrder(tree, root);
+        }
+
+        private void addWordListInOrder(WordTree tree, SubTreeNode node) {
+
+            if (node != null) {
+
+                addWordListInOrder(tree, node.left);
+
+                string[] words = node.description.Replace(",", "").Split(" ");
+                foreach (string word in words) {
+                    tree.Insert(word);
+                }
+
+                addWordListInOrder(tree, node.right);
+
+            }
+
+        }
+
+
+
     }
 }

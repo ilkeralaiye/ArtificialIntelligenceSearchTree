@@ -64,8 +64,8 @@
                 InorderTraversal(node.left, depth);
                 // Print the current node's informations.
                 Console.WriteLine("\tName of the subtree node: {0}", node.name); // Name
-                Console.WriteLine("\t\tDescription: {0}", node.description); // Description
-                Console.WriteLine("\t\tApplication Areas: {0}", node.applicationAreas); // Application Areas
+                Console.WriteLine("\t\t-> Description: {0}", node.description); // Description
+                Console.WriteLine("\t\t-> Application Areas: {0}", node.applicationAreas); // Application Areas
                 // Then, go to the rightmost node
                 InorderTraversal(node.right, depth);
             }
@@ -85,14 +85,14 @@
 
             if (node != null) {
 
-                addWordListInOrder(tree, node.left);
-
+                addWordListInOrder(tree, node.left); // Go to Left Child
+                /* -------------------- */
                 string[] words = node.description.Replace(",", "").Split(" ");
                 foreach (string word in words) {
                     tree.Insert(word);
                 }
-
-                addWordListInOrder(tree, node.right);
+                /* -------------------- */
+                addWordListInOrder(tree, node.right); // Go to Right Child
 
             }
 

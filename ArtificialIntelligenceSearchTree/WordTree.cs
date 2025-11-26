@@ -5,7 +5,6 @@ namespace ArtificialIntelligenceSearchTree {
 
         public WordNode root;
 
-
         // Insertion
         public void Insert(string word) {
             WordNode wordNodeToAdd = new WordNode(word);
@@ -39,7 +38,7 @@ namespace ArtificialIntelligenceSearchTree {
                         return;
                     }
 
-                } else {
+                } else { // If word is same with current
                     current.frequency++;
                     return;
                 }
@@ -56,8 +55,6 @@ namespace ArtificialIntelligenceSearchTree {
             }
 
             printInorderTraversal(root);
-
-
         }
 
         private void printInorderTraversal(WordNode node) {
@@ -69,8 +66,6 @@ namespace ArtificialIntelligenceSearchTree {
             }
 
         }
-
-
 
     }
 }

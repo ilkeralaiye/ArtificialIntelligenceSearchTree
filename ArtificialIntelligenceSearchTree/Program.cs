@@ -19,7 +19,7 @@ namespace ArtificialIntelligenceSearchTree {
             WordTree newWordTree = new WordTree();
             printWordTree(newMainTree, newWordTree);
 
-            // Second Part a.k.a HASHTABLE
+            // Second Part: HASHTABLE
 
             Hashtable hashtable = createHashTable(newMainTree);
             printHashTable(hashtable);

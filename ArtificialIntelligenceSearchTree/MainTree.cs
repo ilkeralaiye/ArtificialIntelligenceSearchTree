@@ -106,6 +106,8 @@ namespace ArtificialIntelligenceSearchTree {
 
         }
 
+        
+
         private void inOrderAddHashTable(MainTreeNode node, Hashtable table) {
 
             if (node != null) {
@@ -114,6 +116,34 @@ namespace ArtificialIntelligenceSearchTree {
                 table.Add(node.name, node);
 
                 inOrderAddHashTable(node.right, table);
+            }
+
+        }
+
+        public void addToHeap(Heap heap) {
+
+            if (root == null) {
+                return;
+            }
+
+            inOrderAddHeapTable(root, heap);
+
+        }
+
+        private void inOrderAddHeapTable(MainTreeNode node, Heap heap) {
+
+            if (node != null) {
+                inOrderAddHeapTable(node.left, heap);
+
+                /////////////////////////////////////
+
+
+                heap.Insert(node);
+
+
+                /////////////////////////////////////
+
+                inOrderAddHeapTable(node.right, heap);
             }
 
         }

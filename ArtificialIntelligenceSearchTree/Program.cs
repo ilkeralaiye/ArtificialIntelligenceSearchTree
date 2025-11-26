@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Xml.Linq;
 
@@ -25,6 +26,32 @@ namespace ArtificialIntelligenceSearchTree {
             printHashTable(hashtable);
             updateHashTable(newMainTree, hashtable);
             printHashTable(hashtable);
+
+            // Third Part: HEAP
+
+            Heap heap = new Heap(4, true);
+            newMainTree.addToHeap(heap);
+
+            Console.WriteLine("\n");
+            printN_HeapElement(heap, 5);
+
+        }
+
+
+        public static void printN_HeapElement(Heap heap, int n) {
+
+            if (n>heap.capacity) {
+                Console.WriteLine("\n\n given n is bigger than heap's capacity. Printing {0} element of heap.", heap.capacity);
+                n = heap.capacity;
+            }
+
+            for (int i=0;i<n;i++) {
+
+                Console.WriteLine("{0}: {1}", i+1, heap.getItemN(i).toString());
+
+            }
+
+
 
         }
 

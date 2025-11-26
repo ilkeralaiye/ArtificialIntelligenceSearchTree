@@ -2,7 +2,7 @@
     internal class Heap {
 
         private MainTreeNode[] heapArray;
-        private int capacity;
+        public int capacity;
         private int length;
         private bool isMeanHeap;
 
@@ -24,8 +24,22 @@
             }
 
             heapArray[length] = node;
-            trickleUpMaxHeap(length++);
+            if (isMeanHeap) {
+                trickleUpMinHeap(length++);
+            } else {
+                trickleUpMaxHeap(length++);
+            }
             return true;
+
+        }
+
+        public MainTreeNode getItemN(int index) {
+
+            if (index < capacity) {
+
+                return heapArray[index];
+
+            }return null;
 
         }
 
@@ -64,7 +78,13 @@
         public MainTreeNode remove() {
             MainTreeNode root = heapArray[0];
             heapArray[0] = heapArray[--length];
-            trickleDownMaxHeap(0);
+            if (isMeanHeap) {
+                trickleDownMinHeap(0);
+            } else {
+                trickleDownMaxHeap(0);
+            }
+
+            
             return root;
         }
 

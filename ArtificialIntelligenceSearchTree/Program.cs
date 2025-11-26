@@ -29,7 +29,7 @@ namespace ArtificialIntelligenceSearchTree {
 
             // Third Part: HEAP
 
-            Heap heap = new Heap(4, true);
+            Heap heap = new Heap(4);
             newMainTree.addToHeap(heap);
 
             Console.WriteLine("\n");
@@ -41,13 +41,13 @@ namespace ArtificialIntelligenceSearchTree {
         public static void printN_HeapElement(Heap heap, int n) {
 
             if (n>heap.capacity) {
-                Console.WriteLine("\n\n given n is bigger than heap's capacity. Printing {0} element of heap.", heap.capacity);
+                Console.WriteLine("\n\n given n:({0}) is bigger than heap's capacity. Printing {1} element of heap.", n, heap.capacity);
                 n = heap.capacity;
             }
 
             for (int i=0;i<n;i++) {
 
-                Console.WriteLine("{0}: {1}", i+1, heap.getItemN(i).toString());
+                Console.WriteLine("{0}: {1}", i+1, heap.getItem(i).toString());
 
             }
 

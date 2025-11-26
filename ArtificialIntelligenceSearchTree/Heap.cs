@@ -1,144 +1,145 @@
 ﻿namespace ArtificialIntelligenceSearchTree {
     internal class Heap {
 
-        private MainTreeNode[] heapArray;
         public int capacity;
-        private int length;
-        private bool isMeanHeap;
+        private int size;
+        private MainTreeNode[] items;
 
-        public Heap(int capacity, bool isMinHeap) {
+        public Heap(int capacity) {
+
             this.capacity = capacity;
-            this.length = 0;
-            this.isMeanHeap = isMeanHeap;
-            heapArray = new MainTreeNode[capacity];
+            this.size = 0;
+            items = new MainTreeNode[capacity];
         }
 
-        public bool isEmpty() {
-            return this.length == 0;
+        public MainTreeNode getItem(int index) {
+            return items[index];
         }
 
-        public bool Insert(MainTreeNode node) {
-
-            if (this.length == this.capacity) {
-                return false;
-            }
-
-            heapArray[length] = node;
-            if (isMeanHeap) {
-                trickleUpMinHeap(length++);
-            } else {
-                trickleUpMaxHeap(length++);
-            }
-            return true;
-
+        private int getLeftChildIndex(int index) {
+            return 2 * index + 1;
         }
 
-        public MainTreeNode getItemN(int index) {
-
-            if (index < capacity) {
-
-                return heapArray[index];
-
-            }return null;
-
+        private int getRightChildIndex(int index) {
+            return 2 * index + 2;
         }
 
-        public void trickleUpMaxHeap(int index) {
-
-            int parent = (index - 1) / 2;
-            MainTreeNode bottom = heapArray[index];
-
-            while (index > 0 && heapArray[parent].name.CompareTo(heapArray[index].name) < 0) {
-
-                heapArray[index] = heapArray[parent];
-                index = parent;
-                parent = (parent - 1) / 2;
-
-            }
-            heapArray[index] = bottom;
-
+        private int getParentIndex(int index) {
+            return (index - 1) / 2;
         }
 
-        public void trickleUpMinHeap(int index) {
-
-            int parent = (index - 1) / 2;
-            MainTreeNode bottom = heapArray[index];
-
-            while (index > 0 && heapArray[parent].name.CompareTo(heapArray[index].name) > 0) {
-
-                heapArray[index] = heapArray[parent];
-                index = parent;
-                parent = (parent - 1) / 2;
-
-            }
-            heapArray[index] = bottom;
-
+        private bool hasLeftChild(int index) {
+            return getLeftChildIndex(index) < size;
         }
 
-        public MainTreeNode remove() {
-            MainTreeNode root = heapArray[0];
-            heapArray[0] = heapArray[--length];
-            if (isMeanHeap) {
-                trickleDownMinHeap(0);
-            } else {
-                trickleDownMaxHeap(0);
-            }
-
-            
-            return root;
+        private bool hasRightChild(int index) {
+            return getRightChildIndex(index) < size;
         }
 
-        public void trickleDownMaxHeap(int index) {
+        private bool hasParent(int index) {
+            return getParentIndex(index) >= 0;
+        }
 
-            int largerChild;
-            MainTreeNode top = heapArray[index];
+        private MainTreeNode leftChild(int index) { 
+            return items[getLeftChildIndex(index)];
+        }
+        private MainTreeNode rightChild(int index) { 
+            return items[getRightChildIndex(index)];
+        }
+        private MainTreeNode parent(int index) { 
+            return items[getParentIndex(index)];
+        }
 
-            while (index < length/2) {
-                int leftChild = 2 * index + 1;
-                int rightChild = leftChild+1;
+        private void swap(int i, int j) {
+            MainTreeNode temp = items[i];
+            items[i] = items[j];
+            items[j] = temp;
+        }
 
-                if (rightChild < length && heapArray[leftChild].name.CompareTo(heapArray[rightChild].name) < 0) {
-                    largerChild = rightChild;
+        public MainTreeNode Peek() {
+            if (size == 0) { return null; }
+            return items[0];
+        }
+
+        public MainTreeNode Remove() {
+            if (size == 0) { return null; }
+            MainTreeNode item = items[0];
+            items[0] = items[size - 1];
+
+            trickleDown();
+
+            return item;
+        }
+
+        public void trickleDown() {
+
+            int index = 0;
+            int smallerChildIndex;
+
+            while (hasLeftChild(index)) {
+
+                if (hasRightChild(index)) {
+
+                    if (rightChild(index).name.CompareTo(leftChild(index).name) < 0) {
+                        smallerChildIndex = getRightChildIndex(index);
+                    } else {
+                        smallerChildIndex = getLeftChildIndex(index);
+                    }
+
                 } else {
-                    largerChild = leftChild;
+                    smallerChildIndex = getLeftChildIndex(index);
                 }
 
-                if (top.name.CompareTo(heapArray[largerChild].name) <= 0) {
+                if (items[index].name.CompareTo(items[smallerChildIndex].name) < 0) {
                     break;
-                }
-
-                heapArray[index] = heapArray[largerChild];
-                index = largerChild;
-            }
-            heapArray[index] = top;
-
-        }
-
-        public void trickleDownMinHeap(int index) {
-
-            int smallerChild;
-            MainTreeNode top = heapArray[index];
-
-            while (index < length / 2) {
-                int leftChild = 2 * index + 1;
-                int rightChild = leftChild + 1;
-
-                if (rightChild < length && heapArray[leftChild].name.CompareTo(heapArray[rightChild].name) > 0) {
-                    smallerChild = rightChild;
                 } else {
-                    smallerChild = leftChild;
+                    swap(index, smallerChildIndex);
                 }
+                index = smallerChildIndex;
 
-                if (top.name.CompareTo(heapArray[smallerChild].name) <= 0) {
-                    break;
-                }
 
-                heapArray[index] = heapArray[smallerChild];
-                index = smallerChild;
             }
-            heapArray[index] = top;
+
+
 
         }
+
+        public void Insert(MainTreeNode item) {
+
+            if (size != capacity) {
+                items[size++] = item;
+                trickleUp();
+            }
+
+        }
+
+        public void trickleUp() {
+
+            int index = size - 1;
+
+            while (hasParent(index) && parent(index).name.CompareTo(items[index].name) < 0) {
+                swap(getParentIndex(index), index);
+                index = getParentIndex(index);
+            }
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
 }
